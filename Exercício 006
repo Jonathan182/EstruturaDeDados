@@ -5,9 +5,9 @@ using namespace std;
 
 void inclusao(void);
 void consulta(void);
+void exclusao(void);
 /*
 void alteracao(void);
-void exclusao(void);
 void listagem(void);
 void situacao(char); 
 */
@@ -16,12 +16,12 @@ void situacao(char);
 struct registro
 {
 	unsigned int matricula;
-	char nome[30];
-	char celular[20];
-	char email[30];
+	string nome;
+	string celular;
+	string email;
 	float nota;
 	int freq;
-	char situacao[11];
+	string situacao;
 }typedef registro;
 
 registro alunos[TAM_TURMA];
@@ -39,22 +39,23 @@ int main()
 		cout << "\nMenu de Opcões:" <<endl;
 		cout << " 1 - Inclusão" <<endl;
 		cout << " 2 - Consulta" <<endl;
-		cout << " 3 - Alteração" <<endl;
-		cout << " 4 - Exclusão" <<endl;
+		cout << " 3 - Exclusão" <<endl;
+		cout << " 4 - Alteração" <<endl;
 		cout << " 5 - Listagem" <<endl;
 		cout << " 0 - Sair" <<endl;
 		cout << "\nEscolha Uma Opção:" <<endl;
 		cin >> op;
+		
 		switch (op)
 		{
 			case 1: inclusao();
 				break;
 			case 2: consulta();
 			    break;
-			    /*
-			case 3: alteracao();
+			case 3: exclusao();
 				break;
-			case 4: exclusao();
+				/*
+			case 4: alteracao();
 				break;
 			case 5: listagem();
 				break;
@@ -119,9 +120,30 @@ void consulta (void)
         	cout << "Nota: " << alunos[i].nota << endl;
         	cout << "Situação (Frequência): " << alunos[i].situacao << endl;
 		}
-		else
+	}
+}
+
+void exclusao(void)
+{
+	unsigned int consut_mat3;
+	int i;
+	
+	cout << "Curso De Programação Em PYTHON" << endl;
+	cout << "Exclusão de Dados do Aluno:" << endl;
+	cout << "\nDigite a Matricula do Aluno: " << endl;
+	cin >> consut_mat3;
+	
+	for(i=0; i<cads; i++)
+	{
+		if (consut_mat3 == alunos[i].matricula)
 		{
-			cout << "O Aluno Não Existe Ou Não Foi Matriculado!" << endl;
+			alunos[i].matricula = 0;
+			alunos[i].nome = "";
+			alunos[i].celular = "";
+			alunos[i].email = "";
+			alunos[i].nota = 0;
+			alunos[i].situacao = "";
+			cads--;
 		}
 	}
 }
@@ -143,35 +165,6 @@ void alteracao(void)
 	{
 		cout << "TESTE" <<endl;
 	}
-}
-
-void exlcusao(void)
-{
-	unsigned int consut_mat3;
-	int i;
-	
-	cout << "Curso De Programação Em PYTHON" << endl;
-	cout << "Exclusão de Dados do Aluno:" << endl;
-	cout << "\nDigite a Matricula do Aluno: " << endl;
-	cin >> consut_mat3;
-	
-	for(i=0; i<cads; i++)
-	{
-		if (consut_mat3 == alunos[i].matricula)
-		{
-			/*alunos[i].matricula = 0;
-			alunos[i].nome = "";
-			alunos[i].celular = 0;
-			alunos[i].email = "";
-			alunos[i].nota = 0;
-			alunos[i].situacao = 0;*/
-		}
-		else
-		{
-			cout << "O Aluno Não Existe Ou Não Foi Matriculado!" <<endl;
-		}
-	}
-	--cads;
 }
 
 void listagem(void)
