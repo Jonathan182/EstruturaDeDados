@@ -1,0 +1,135 @@
+#include <iostream>
+#include <string.h>
+
+using namespace std;
+
+void inclusao(void);
+/*
+void consulta(void);
+void alteracao(void);
+void exclusao(void);
+void listagem(void);
+void situacao(char); 
+*/
+#define TAM_TURMA 2
+
+struct registro
+{
+	unsigned int matricula;
+	char nome[30];
+	char celular[20];
+	char email[30];
+	float nota;
+	int freq;
+	char situacao[11];
+}typedef registro;
+
+registro alunos[TAM_TURMA];
+int cads = 0;
+char pausa;
+
+int main()
+{
+	setlocale(LC_ALL, "");
+	int op=0;
+	
+	//do
+	{
+		cout << "Curso De Programação Em PYTHON" << endl;
+		cout << "\nMenu de Opcões:" <<endl;
+		cout << " 1 - Inclusão" <<endl;
+		cout << " 2 - Consulta" <<endl;
+		cout << " 3 - Alteração" <<endl;
+		cout << " 4 - Exclusão" <<endl;
+		cout << " 5 - Listagem" <<endl;
+		cout << " 0 - Sair" <<endl;
+		cout << "\nEscolha Uma Opção:" <<endl;
+		cin >> op;
+		switch (op)
+		{
+			case 1: inclusao();
+				break;
+			case 2: consulta();
+			    break;
+			case 3: alteracao();
+				break;
+			case 4: exclusao();
+				break;
+			case 5: listagem();
+				break;
+		}
+		
+	} while (op != 0);
+	
+	return 0;
+}
+
+void inclusao(void)
+{
+	cout << "Curso De Programação Em PYTHON" << endl;
+	cout << "\nCadrastro De Alunos" << endl;
+	cout << "Turma com " <<cads<< "Alunos Matriculados" << endl;
+	cout << "Capacidade Máxima Da Turma: " << TAM_TURMA << endl;
+	
+	if (cads == TAM_TURMA)
+	{
+		cout << "TURMA LOTADA! \n Precione ENTER." << endl;
+		cin >> pausa;
+	}
+	else
+	{
+		cout << "Digite a matrícula: " << endl; 
+		cin >> alunos[cads].matricula; 
+		cout << "Digite o Nome: " << endl;
+		cin >> alunos[cads].nome;
+		cout << "Digite o Celular: " << endl;
+		cin >> alunos[cads].celular;
+		cout << "Digite o Email: " << endl;
+		cin >> alunos[cads].email;
+		cout << "Digite a Nota da prova: " << endl;
+		cin >> alunos[cads].nota;
+		cout << "Digite a situação: " << endl;
+		cin >> alunos[cads].situacao;
+
+		++cads;
+	}
+}
+
+void consulta (void)
+{
+	unsigned int consut_mat
+	cout << "Curso De Programação Em PYTHON" << endl;
+	cout << "\nConsulta De Alunos" << endl;
+	cout << "\nDigite a Matricula do Aluno: " << endl;
+	cin >> consut_mat;
+	
+	if (consut_mat == alunos[cads].matricula)
+	{
+		cout << "Registro do Aluno: " << cads;
+        cout << "Matricula: " << Alunos[cads].matricula << endl;
+        cout << "Nome: " << Alunos[cads].nome << endl;
+        cout << "Celular: "<< Alunos[cads].celular << endl;
+        cout << "E-mail: " << Alunos[cads].email << endl;
+        cout << "Nota: " << Alunos[cads].nota << endl;
+        cout << "Situação (Frequência): "Alunos[cads].situacao << endl;
+	}
+	else
+	{
+		cout << "Aluno Não Cadastrado!" << endl;
+	}
+}
+
+void alteracao(void)
+{
+	unsigned int consut_mat2
+	cout << "Curso De Programação Em PYTHON" << endl;
+	cout << "Alteração de Dados do Aluno:" << endl;
+	cout << "\nDigite a Matricula do Aluno: " << endl;
+	cin >> consut_mat2;
+	
+	if (consut_mat2 == alunos[cads].matricula)
+	{
+		
+	}
+		
+}
