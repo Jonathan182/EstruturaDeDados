@@ -4,8 +4,8 @@
 using namespace std;
 
 void inclusao(void);
-/*
 void consulta(void);
+/*
 void alteracao(void);
 void exclusao(void);
 void listagem(void);
@@ -32,8 +32,8 @@ int main()
 {
 	setlocale(LC_ALL, "");
 	int op=0;
-	
-	//do
+
+	do
 	{
 		cout << "Curso De Programação Em PYTHON" << endl;
 		cout << "\nMenu de Opcões:" <<endl;
@@ -51,12 +51,14 @@ int main()
 				break;
 			case 2: consulta();
 			    break;
+			    /*
 			case 3: alteracao();
 				break;
 			case 4: exclusao();
 				break;
 			case 5: listagem();
 				break;
+				*/
 		}
 		
 	} while (op != 0);
@@ -68,8 +70,8 @@ void inclusao(void)
 {
 	cout << "Curso De Programação Em PYTHON" << endl;
 	cout << "\nCadrastro De Alunos" << endl;
-	cout << "Turma com " <<cads<< "Alunos Matriculados" << endl;
-	cout << "Capacidade Máxima Da Turma: " << TAM_TURMA << endl;
+	cout << "Turma com " <<cads<< " Alunos Matriculados" << endl;
+	cout << "Capacidade Máxima Da Turma: " << TAM_TURMA <<"\n" << endl;
 	
 	if (cads == TAM_TURMA)
 	{
@@ -78,50 +80,56 @@ void inclusao(void)
 	}
 	else
 	{
-		cout << "Digite a matrícula: " << endl; 
+		cout << "Digite a matrícula: " << cads + 1 << endl; 
 		cin >> alunos[cads].matricula; 
-		cout << "Digite o Nome: " << endl;
+		cout << "\nDigite o Nome: " << endl;
 		cin >> alunos[cads].nome;
-		cout << "Digite o Celular: " << endl;
+		cout << "\nDigite o Celular: " << endl;
 		cin >> alunos[cads].celular;
-		cout << "Digite o Email: " << endl;
+		cout << "\nDigite o Email: " << endl;
 		cin >> alunos[cads].email;
-		cout << "Digite a Nota da prova: " << endl;
+		cout << "\nDigite a Nota da prova: " << endl;
 		cin >> alunos[cads].nota;
-		cout << "Digite a situação: " << endl;
+		cout << "\nDigite a situação: " << endl;
 		cin >> alunos[cads].situacao;
 
-		++cads;
+		cads++;
 	}
 }
 
 void consulta (void)
 {
-	unsigned int consut_mat
+	unsigned int consut_mat;
+	int i;
+	
 	cout << "Curso De Programação Em PYTHON" << endl;
 	cout << "\nConsulta De Alunos" << endl;
 	cout << "\nDigite a Matricula do Aluno: " << endl;
 	cin >> consut_mat;
 	
-	if (consut_mat == alunos[cads].matricula)
+	for(i=0; i<cads; i++)
 	{
-		cout << "Registro do Aluno: " << cads;
-        cout << "Matricula: " << Alunos[cads].matricula << endl;
-        cout << "Nome: " << Alunos[cads].nome << endl;
-        cout << "Celular: "<< Alunos[cads].celular << endl;
-        cout << "E-mail: " << Alunos[cads].email << endl;
-        cout << "Nota: " << Alunos[cads].nota << endl;
-        cout << "Situação (Frequência): "Alunos[cads].situacao << endl;
-	}
-	else
-	{
-		cout << "Aluno Não Cadastrado!" << endl;
+		if (consut_mat == alunos[i].matricula)
+		{
+			cout << "Registro do Aluno: " << cads;
+        	cout << "Matricula: " << alunos[i].matricula << endl;
+        	cout << "Nome: " << alunos[i].nome << endl;
+        	cout << "Celular: "<< alunos[i].celular << endl;
+        	cout << "E-mail: " << alunos[i].email << endl;
+        	cout << "Nota: " << alunos[i].nota << endl;
+        	cout << "Situação (Frequência): " << alunos[i].situacao << endl;
+		}
+		else
+		{
+			cout << "O Aluno Não Existe Ou Não Foi Matriculado!" << endl;
+		}
 	}
 }
 
 void alteracao(void)
 {
-	unsigned int consut_mat2
+	unsigned int consut_mat2;
+	
 	cout << "Curso De Programação Em PYTHON" << endl;
 	cout << "Alteração de Dados do Aluno:" << endl;
 	cout << "\nDigite a Matricula do Aluno: " << endl;
@@ -129,7 +137,58 @@ void alteracao(void)
 	
 	if (consut_mat2 == alunos[cads].matricula)
 	{
-		
+		cout << "TESTE" <<endl;
 	}
-		
+	else
+	{
+		cout << "TESTE" <<endl;
+	}
+}
+
+void exlcusao(void)
+{
+	unsigned int consut_mat3;
+	int i;
+	
+	cout << "Curso De Programação Em PYTHON" << endl;
+	cout << "Exclusão de Dados do Aluno:" << endl;
+	cout << "\nDigite a Matricula do Aluno: " << endl;
+	cin >> consut_mat3;
+	
+	for(i=0; i<cads; i++)
+	{
+		if (consut_mat3 == alunos[i].matricula)
+		{
+			/*alunos[i].matricula = 0;
+			alunos[i].nome = "";
+			alunos[i].celular = 0;
+			alunos[i].email = "";
+			alunos[i].nota = 0;
+			alunos[i].situacao = 0;*/
+		}
+		else
+		{
+			cout << "O Aluno Não Existe Ou Não Foi Matriculado!" <<endl;
+		}
+	}
+	--cads;
+}
+
+void listagem(void)
+{
+	int i;
+	cout << "Curso De Programação Em PYTHON" << endl;
+	cout << "Listagem de Alunos:" << endl;
+	for (i=0; i<cads; i++)
+	{
+		cout << "Matricula: " << alunos[i].matricula << endl;
+        cout << "Nome: " << alunos[i].nome << endl;
+        cout << "Celular: "<< alunos[i].celular << endl;
+        cout << "E-mail: " << alunos[i].email << endl;
+        cout << "Nota: " << alunos[i].nota << endl;
+        cout << "Situação (Frequência): " << alunos[i].situacao << endl;
+	}
+	cout << "Turma com " << cads <<" Alunos Matriculados" <<endl;
+	cout << "\n Precione ENTER!" << endl;
+	cin >> pausa;
 }
