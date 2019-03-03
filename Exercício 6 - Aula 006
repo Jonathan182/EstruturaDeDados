@@ -1,0 +1,32 @@
+#include <iostream>
+
+using namespace std;
+
+void selecionar(int,int);
+
+int main(int argc, char** argv) {
+	setlocale(LC_ALL, "");
+	int x,y;
+	cout << "Seleção de Talentos" << endl;
+	cout << "\nDigite o Ano Que Está Cursando: " <<endl;
+	cin >> x;
+	cout << "Digite a Sua Idade:" <<endl;
+	cin >> y;
+	
+	selecionar(x,y);
+	
+	return 0;
+}
+
+void selecionar(int a, int b)
+{
+
+	if(a == 1 && b >= 15 && b <= 17)
+	{
+		cout << "Você Foi Aceito" << endl;
+	}
+	else
+	{
+		cout << "Você Não Foi Aceito" <<endl;
+	}	
+}
