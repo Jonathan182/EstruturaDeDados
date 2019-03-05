@@ -2,7 +2,6 @@
 #include <string.h>
 
 using namespace std;
-
 void inclusao(void);
 void consulta(void);
 void exclusao(void);
@@ -10,7 +9,7 @@ void alteracao(void);
 void listagem(void);
 void situacao(char);
 
-#define TAM_TURMA 2
+#define TAM_TURMA 60
 
 struct registro
 {
@@ -109,12 +108,12 @@ void consulta (void)
 		if (consut_mat == alunos[i].matricula)
 		{
 			cout << "Registro do Aluno: " << cads;
-        	cout << "Matricula: " << alunos[i].matricula << endl;
-        	cout << "Nome: " << alunos[i].nome << endl;
-        	cout << "Celular: "<< alunos[i].celular << endl;
-        	cout << "E-mail: " << alunos[i].email << endl;
-        	cout << "Nota: " << alunos[i].nota << endl;
-        	cout << "Situação (Frequência): " << alunos[i].situacao << endl;
+        			cout << "Matricula: " << alunos[i].matricula << endl;
+        			cout << "Nome: " << alunos[i].nome << endl;
+        			cout << "Celular: "<< alunos[i].celular << endl;
+        			cout << "E-mail: " << alunos[i].email << endl;
+        			cout << "Nota: " << alunos[i].nota << endl;
+        			cout << "Situação (Frequência): " << alunos[i].situacao << endl;
 		}
 	}
 }
@@ -160,35 +159,36 @@ void alteracao(void)
 		{
 			cout << "Resgistro Do Aluno" <<endl;
 			cout << " 1 - Matricula: " << alunos[i].matricula << endl;
-            cout << " 2 - Nome: " << alunos[i].nome << endl;
-            cout << " 3 - Celular: "<< alunos[i].celular << endl;
-            cout << " 4 - E-mail: " << alunos[i].email << endl;
-            cout << " 5 - Nota: " << alunos[i].nota << endl;
-            cout << " 6 - Situação: " << alunos[i].situacao << endl;
-            cout << "\nESCOLHA O QUE DESEJA SUBSTITUIR: " << endl;
-            cin >> op;
+			cout << " 2 - Nome: " << alunos[i].nome << endl;
+			cout << " 3 - Celular: "<< alunos[i].celular << endl;
+			cout << " 4 - E-mail: " << alunos[i].email << endl;
+			cout << " 5 - Nota: " << alunos[i].nota << endl;
+			cout << " 6 - Situação: " << alunos[i].situacao << endl;
+			cout << "\nESCOLHA O QUE DESEJA SUBSTITUIR: " << endl;
+			cin >> op;
             
-            switch(op)
-            {
-            	case 1: cout << "Insira a Nova Matricula: " <<endl;
-            			cin >> alunos[i].matricula;
-            			break;
-            	case 2: cout << "Insira a Novo Nome: " <<endl;
-            			cin >> alunos[i].nome;
-            			break;
-            	case 3: cout << "Insira o Novo Número: " <<endl;
-            			cin >> alunos[i].celular;
-            			break;
-            	case 4: cout << "Insira o Novo E-mail: " <<endl;
-            			cin >> alunos[i].email;
-            			break;
-            	case 5: cout << "Insira a Nova Nota" <<endl;
-            			cin >> alunos[i].nota;
-            			break;
-            	case 6: cout <<"Insira a Nova Situação" << endl;
-            			cin >> alunos[i].situacao;
+			switch(op)
+			{
+				case 1: cout << "Insira a Nova Matricula: " <<endl;
+				cin >> alunos[i].matricula;
+					break;
+				case 2: cout << "Insira a Novo Nome: " <<endl;
+				cin >> alunos[i].nome;
+					break;
+				case 3: cout << "Insira o Novo Número: " <<endl;
+				cin >> alunos[i].celular;
+					break;
+				case 4: cout << "Insira o Novo E-mail: " <<endl;
+				cin >> alunos[i].email;
+					break;
+				case 5: cout << "Insira a Nova Nota" <<endl;
+				cin >> alunos[i].nota;
+					break;
+				case 6: cout <<"Insira a Nova Situação" << endl;
+				cin >> alunos[i].situacao;
+					break;
 			}
-        }	
+		}
 	}
 }
 
@@ -200,13 +200,14 @@ void listagem(void)
 	for (i=0; i<cads; i++)
 	{
 		cout << "Matricula: " << alunos[i].matricula << endl;
-        cout << "Nome: " << alunos[i].nome << endl;
-        cout << "Celular: "<< alunos[i].celular << endl;
-        cout << "E-mail: " << alunos[i].email << endl;
-        cout << "Nota: " << alunos[i].nota << endl;
-        cout << "Situação (Frequência): " << alunos[i].situacao << endl;
+		cout << "Nome: " << alunos[i].nome << endl;
+		cout << "Celular: "<< alunos[i].celular << endl;
+		cout << "E-mail: " << alunos[i].email << endl;
+		cout << "Nota: " << alunos[i].nota << endl;
+		cout << "Situação (Frequência): " << alunos[i].situacao << endl;
 	}
 	cout << "Turma com " << cads <<" Alunos Matriculados" <<endl;
 	cout << "\n Precione ENTER!" << endl;
+	fflush(stdin);
 	cin >> pausa;
 }
