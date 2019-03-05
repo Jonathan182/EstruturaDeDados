@@ -6,11 +6,10 @@ using namespace std;
 void inclusao(void);
 void consulta(void);
 void exclusao(void);
-/*
 void alteracao(void);
 void listagem(void);
-void situacao(char); 
-*/
+void situacao(char);
+
 #define TAM_TURMA 2
 
 struct registro
@@ -54,12 +53,10 @@ int main()
 			    break;
 			case 3: exclusao();
 				break;
-				/*
 			case 4: alteracao();
 				break;
 			case 5: listagem();
 				break;
-				*/
 		}
 		
 	} while (op != 0);
@@ -101,14 +98,13 @@ void inclusao(void)
 void consulta (void)
 {
 	unsigned int consut_mat;
-	int i;
 	
 	cout << "Curso De Programação Em PYTHON" << endl;
 	cout << "\nConsulta De Alunos" << endl;
 	cout << "\nDigite a Matricula do Aluno: " << endl;
 	cin >> consut_mat;
 	
-	for(i=0; i<cads; i++)
+	for(int i=0; i<cads; i++)
 	{
 		if (consut_mat == alunos[i].matricula)
 		{
@@ -151,19 +147,48 @@ void exclusao(void)
 void alteracao(void)
 {
 	unsigned int consut_mat2;
+	int op=0;
 	
 	cout << "Curso De Programação Em PYTHON" << endl;
 	cout << "Alteração de Dados do Aluno:" << endl;
 	cout << "\nDigite a Matricula do Aluno: " << endl;
 	cin >> consut_mat2;
 	
-	if (consut_mat2 == alunos[cads].matricula)
+	for(int i=0; i<cads; i++)
 	{
-		cout << "TESTE" <<endl;
-	}
-	else
-	{
-		cout << "TESTE" <<endl;
+		if (consut_mat2 == alunos[cads].matricula)
+		{
+			cout << "Resgistro Do Aluno" <<endl;
+			cout << " 1 - Matricula: " << alunos[i].matricula << endl;
+            cout << " 2 - Nome: " << alunos[i].nome << endl;
+            cout << " 3 - Celular: "<< alunos[i].celular << endl;
+            cout << " 4 - E-mail: " << alunos[i].email << endl;
+            cout << " 5 - Nota: " << alunos[i].nota << endl;
+            cout << " 6 - Situação: " << alunos[i].situacao << endl;
+            cout << "\nESCOLHA O QUE DESEJA SUBSTITUIR: " << endl;
+            cin >> op;
+            
+            switch(op)
+            {
+            	case 1: cout << "Insira a Nova Matricula: " <<endl;
+            			cin >> alunos[i].matricula;
+            			break;
+            	case 2: cout << "Insira a Novo Nome: " <<endl;
+            			cin >> alunos[i].nome;
+            			break;
+            	case 3: cout << "Insira o Novo Número: " <<endl;
+            			cin >> alunos[i].celular;
+            			break;
+            	case 4: cout << "Insira o Novo E-mail: " <<endl;
+            			cin >> alunos[i].email;
+            			break;
+            	case 5: cout << "Insira a Nova Nota" <<endl;
+            			cin >> alunos[i].nota;
+            			break;
+            	case 6: cout <<"Insira a Nova Situação" << endl;
+            			cin >> alunos[i].situacao;
+			}
+        }	
 	}
 }
 
