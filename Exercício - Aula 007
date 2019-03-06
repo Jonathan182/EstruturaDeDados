@@ -9,7 +9,7 @@ void alteracao(void);
 void listagem(void);
 void situacao(char);
 
-#define TAM_TURMA 60
+#define TAM_TURMA 2
 
 struct registro
 {
@@ -103,7 +103,7 @@ void consulta (void)
 	cout << "\nDigite a Matricula do Aluno: " << endl;
 	cin >> consut_mat;
 	
-	for(int i=0; i<cads; i++)
+	for(int i=0; i<TAM_TURMA; i++)
 	{
 		if (consut_mat == alunos[i].matricula)
 		{
@@ -128,7 +128,7 @@ void exclusao(void)
 	cout << "\nDigite a Matricula do Aluno: " << endl;
 	cin >> consut_mat3;
 	
-	for(i=0; i<cads; i++)
+	for(i=0; i<TAM_TURMA; i++)
 	{
 		if (consut_mat3 == alunos[i].matricula)
 		{
@@ -153,7 +153,7 @@ void alteracao(void)
 	cout << "\nDigite a Matricula do Aluno: " << endl;
 	cin >> consut_mat2;
 	
-	for(int i=0; i<cads; i++)
+	for(int i=0; i<TAM_TURMA; i++)
 	{
 		if (consut_mat2 == alunos[cads].matricula)
 		{
@@ -197,14 +197,18 @@ void listagem(void)
 	int i;
 	cout << "Curso De Programação Em PYTHON" << endl;
 	cout << "Listagem de Alunos:" << endl;
-	for (i=0; i<cads; i++)
+	for (i=0; i<TAM_TURMA; i++)
 	{
+		if(alunos[i].matricula > 0)
+		{
 		cout << "Matricula: " << alunos[i].matricula << endl;
 		cout << "Nome: " << alunos[i].nome << endl;
 		cout << "Celular: "<< alunos[i].celular << endl;
 		cout << "E-mail: " << alunos[i].email << endl;
 		cout << "Nota: " << alunos[i].nota << endl;
 		cout << "Situação (Frequência): " << alunos[i].situacao << endl;
+		
+		}
 	}
 	cout << "Turma com " << cads <<" Alunos Matriculados" <<endl;
 	cout << "\n Precione ENTER!" << endl;
