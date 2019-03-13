@@ -1,0 +1,26 @@
+#include <iostream>
+
+using namespace std;
+
+int main(int argc, char** argv) {
+	
+	setlocale(LC_ALL, "");
+	
+	double dados[5] = {0.001,0.002,0.003,0.004,0.005};
+	double *ptr;
+		
+	cout << "Um Double Ocupa " << sizeof(double) << " Bytes" <<endl;
+	
+	for (int i=0; i<5; i++){
+		cout << "Dados " << i << " = " << dados[i] <<endl;
+	}
+	ptr = dados;
+	cout << "Endereço do Vetor Dados = " << ptr <<endl;
+	
+	for (int i=0; i<5; i++){
+		cout << "Dados " << i << " = " << *ptr << endl;
+		ptr++;
+	}
+		
+	return 0;
+}
