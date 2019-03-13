@@ -8,7 +8,7 @@ int main(int argc, char** argv) {
 	
 	int dados[5] = {15,25,35,45,55};
 	
-	cout << "Um Float Ocupa " << sizeof(float) << "Bytes" <<endl;
+	cout << "Um Float Ocupa " << sizeof(int) << "Bytes" <<endl;
 	
 	for (int i=0; i<5; i++)
 		cout << "Dados " << i << " = " << dados[i] <<endl;
