@@ -1,0 +1,28 @@
+#include <iostream>
+
+using namespace std;
+
+int main(int argc, char** argv) {
+	
+	setlocale(LC_ALL, "");
+	
+	int TurmaAlunoDisc[3] [3];
+	TurmaAlunoDisc[0][0] = 100; // Nro da turma
+	TurmaAlunoDisc[0][1] = 20;  // Qtde de alunos
+	TurmaAlunoDisc[0][2] = 6;   // Qtde Discliplinas
+	TurmaAlunoDisc[1][0] = 200; // Nro da turma
+	TurmaAlunoDisc[1][1] = 18;  // Qtde de alunos
+	TurmaAlunoDisc[1][2] = 5;   // Qtde Discliplinas
+	TurmaAlunoDisc[2][0] = 300; // Nro da turma
+	TurmaAlunoDisc[2][1] = 15;  // Qtde de alunos
+	TurmaAlunoDisc[2][2] = 4;   // Qtde Discliplinas
+	
+	for (int Lin = 0; Lin < 3; Lin++){
+		
+		cout << "Nro da Turma: " << *(TurmaAlunoDisc[0] + (Lin * 3)) << endl;
+		cout << "Qt de Alunos: " << *(TurmaAlunoDisc[0] + (Lin * 3) + 1) <<endl;
+		cout << "Qt de Discip: " << *(TurmaAlunoDisc[0] + (Lin * 3) + 2) <<endl;
+	}
+		
+	return 0;
+}
