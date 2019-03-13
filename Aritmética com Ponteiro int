@@ -1,0 +1,20 @@
+#include <iostream>
+
+using namespace std;
+
+int main(int argc, char** argv) {
+	
+	setlocale(LC_ALL, "");
+	
+	int dados[5] = {15,25,35,45,55};
+	
+	cout << "Um Float Ocupa " << sizeof(float) << "Bytes" <<endl;
+	
+	for (int i=0; i<5; i++)
+		cout << "Dados " << i << " = " << dados[i] <<endl;
+		cout << "Endereço do Vetor Dados = " << dados <<endl;
+	for (int i=0; i<5; i++)
+		cout << "Dados " << i << " = " << *(dados + i) << endl;
+		
+	return 0;
+}
