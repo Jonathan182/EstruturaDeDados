@@ -1,0 +1,188 @@
+/*
+CRUD em Lingugem C - quatro operacoes basicas sobre bases de dados : Criacao (Create), Consulta (Read), Atualizacao (Update) e Exclusao (Delete) de dados.
+A partir do problema de cadastro dos 60 alunos de um curso de Prog ramacao em Python que tem uma anica avaliacao e controle de frequencia das 20 aulas, foi:
+a)	definido: Os dados a serem lidos (campos);
+b)	escolhido: Os tipos de dados para cada campo; e
+c)	elaborado programa Linguagem C para ler os dados.
+Faca uma rotina para:
+Consultar os dados de um aluno a partir da matricula; Alterar os dados de um aluno a partir da matricula; Excluir os dados de um aluno a partir da matricula;
+Integrar as 3 rotinas acima com a rotina de Inclusao em um anico programa em Linguagem C.
+Programador: Ricardo Ferreira Data da Criacao: 17/03/2019 Ultima Alteracao:
+*/
+
+#include <stdlib.h>
+#include <string.h> 
+#include <stdio.h>
+
+struct registro
+{
+unsigned int Mat // Identifica um anico aluno.
+char Nome[20];  //Descricao do nome do aluno.
+char Celular[11]; //Namero do celular para contato.
+char email[30];  //Endereco eletronico para contat
+float Nota; //Valor da anica nota do curso (0 ,0 a 10,0).
+int Frequencia; //Total de presenca.
+char Situacao;  /*Situacao do aluno no curso: Matriculado, Abandonante, Aprovado, 
+				Reprovado por falta "<75%", Reprovado por nota "<7,0"*/
+
+}typedef registro; char pausa;
+
+void inclusao(registro *, int); void consulta(void);
+void alteracao(registro *, int); void exclusao(void);
+void listagem(registro *, int);
+int pesquisar(registro *, int, int);
+int main (void)
+{
+registro *Alunos;	// Estrutura de cadastro dos alunos do curso de Python.
+int cads = ;	// Variavel global que controla a quantidade de alunos cadastrados.
+Alunos = (registro *) malloc(sizeof(registro)); //Alocacao de memaria para o vetor de regsitro. 
+char op='0';	// Variavel para controlar o lac() das opcoes de cadastro.
+
+do // Laço do Menu de cadastro. 
+{
+	printf("\e[H\e[2J"); 
+    printf("MEGA POWER COMPUTA00 AVANcADA\n"); 
+    printf("CURSO DE PROGRAMA00 EM PYTHON\n");
+    printf("MENU DE OPOES\n"); 
+    printf("1 - Inclusao\n"); 
+    printf("2 - Consulta\n"); 
+    printf("3 - Alteracao\n"); 
+    printf("4 - Exclusao\n"); 
+    printf("5 - Listagem\n"); 
+    printf("0 - Sair\n");
+    printf("Escolha uma opcao: \n" ) ;
+    scanf("%c", &op);
+    switch (op)
+    {
+        case '1':
+            inclusao(Alunos, cads       );
+            cads++;
+            Alunos = (registro *) realloc(Alunos, (cads+ )*sizeof(registro));
+            break;
+        case '2': consulta();
+        	break;
+        case'3': alteracao(Alunos, cads);
+        	break;
+        case'4': exclusao();
+        	break;
+        case'5': listagem(Alunos, cads);
+        	break;
+	}
+}while (op != '0');
+	return 0;
+}
+
+void inclusao(registro *Alu, int TAM)
+{
+printf("\e[H\e[2J");
+printf("MEGA POWER COMPUTA00 AVANcADA\n");
+ printf("CURSO DE PROGRAMA00 EM PYTHON\n"); 
+ printf("CADASTRO DE ALUNO - INCLUSAO\n"); 
+	printf("	\n\n");
+printf("Digite a %ia. Matricula: ", TAM+1);
+scanf("%i", &Alu[TAM].Matricula);
+ printf("Digite o Nome: ");
+scanf("%20s", &Alu[TAM].Nome); 
+printf("Digite o Celular: "); 
+scanf("%lls", &Alu[TAM].Celular);
+ printf("Digite o e-mail: "); 
+ scanf("%30s", &Alu[TAM].email); 
+ printf("Digite a Nota: ");
+ scanf("%f", &Alu[TAM].Nota); 
+ printf("Digite o total de presenca: ");
+  scanf("%i", &Alu[TAM].Frequencia);
+   printf("Digite a Situacao: ");
+    scanf("%c", &Alu[TAM].Situacao);
+}
+
+void consulta(void)
+{ 
+}
+
+void alteracao(registro *Alu, int TAM)
+{
+unsigned int Matric; // Identifica um anico aluno. int i, posicao;
+printf("\e[H\e[2J");
+printf("MEGA POWER COMPUTA00 AVANcADA\n"); 
+printf("CURSO DE PROGRAMA00 EM PYTHON\n"); 
+printf("CADASTRO DE ALUNO - ALTERAcAO\n"); 
+ printf(" \n\n");
+printf("Digite a Matricula: ");
+scanf("%i", &Matric);
+posicao = pesquisar(Alu, TAM, Matric); 
+if (posicao == -1)
+{
+printf("Matricula nao encontrada!\n");
+ printf("Pressione Enter!");
+fflush(stdin);
+scanf("\n%C", &pausa);
+}
+else
+{
+printf("Registro atual:\n");
+printf("Nome	o %-20s\n", Alu[posicao].Nome);
+printf("Celular...: %-lls\n", Alu[posicao].Celular);
+printf("e-mail	o %-30s\n", Alu[posicao].email);
+printf("Nota	o %f\n", Alu[posicao].Nota);
+printf("Frequencia: %i\n", Alu[posicao].Frequencia); 
+printf("Situacao..: %c\n\n", Alu[posicao].Situacao);
+ printf("Novos dados:\n");
+printf("Digite o Nome: ");
+scanf("%20s", &Alu[posicao].Nome);
+printf("Digite o Celular: ");
+scanf("%lls", &Alu[posicao].Celular);
+printf("Digite o e-mail: ");
+scanf("%30s", &Alu[posicao].email);
+printf("Digite a Nota: ");
+scanf("%f", &Alu [posicao].Nota);
+printf("Digite o total de presenca: "); 
+scanf("%i", &Alu [posicao].Frequencia);
+ printf("Digite a Situacao: ");
+scanf("%c", &Alu [posicao].Situacao);
+printf("\nAlteracao realizada."); printf("Pressione Enter!");
+fflush(stdin);
+scanf("\n%C", &pausa);
+}
+
+}
+
+void exclusao(void)
+{
+}
+
+void listagem(registro *Alu, int TAM)
+{
+int i;
+printf("\e[H\e[2J");
+printf("MEGA POWER COMPUTA00 AVAKADA\n"); 
+printf("CURSO DE PROGRAMA00 EM PYTHON\n"); printf("CADASTRO DE ALUNO - INCLUSAO\n");
+printf("	\n\n");
+printf("Matricula Nome	Celular \n");
+
+for (i=q; i<TAM; i++)
+{
+printf("%5i	, Alu[i].Matricula);
+printf("%-20s "	, Alu[i].Nome);
+printf("%-lls "	, Alu[i].Celular);
+printf("%-30s "	, Alu[i].email);
+printf("%5.2f "	, Alu[i].Nota);
+printf("%2i	" , Alu[i].Frequencia);
+printf("%c\n"	, Alu[i].Situacao);
+}
+
+printf("Turma com %i aluno(s) matriculado(s)\n\n", TAM); 
+printf("Pressione Enter!");
+fflush(stdin);
+scanf("\n%C", &pausa);
+}
+
+int pesquisar(registro *Alu, int TAM, int Mat)
+{
+int i=0;
+int elemento = -1;
+while (Alu[i].Matricula != Mat && i<=TAM)
+i++;
+if (i<TAM)
+elemento = i;
+return elemento;
+}
