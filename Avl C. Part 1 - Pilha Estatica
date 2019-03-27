@@ -1,0 +1,91 @@
+#include <iostream>
+using namespace std;
+
+void push(int*, int*);
+
+void mostra_pilha(int *, int);
+
+int pop(int*, int *);
+
+#define TAM 5
+
+int main(int argc, char** argv) {
+	setlocale(LC_ALL, "");
+	
+	int minha_pilha [TAM];
+	
+	int op;
+	
+	int valor;
+	
+	int topo = -1;
+	
+	do
+	{
+		cout << "Pilha" << endl;
+		cout << "1. Empilhar" << endl;
+		cout << "2. Desempilhar" << endl;
+		cout << "3. Mostrar Pilha" << endl;
+		cout << "0. Sair" << endl;
+		cin >> op;
+		
+		switch (op)
+		{
+			case 1: push (minha_pilha, &topo); break;
+			case 2: valor = pop (minha_pilha, &topo); break;
+			case 3: mostra_pilha (minha_pilha, topo); break;
+		}	
+	} while (op != 0);
+	
+	return 0;
+}
+
+	void push (int *pilha, int *top)
+ 	{
+		int vlr;
+	
+		if (*top == TAM-1)
+			cout << "Pilha Cheia" << endl;
+		else
+		{
+			cout << "Digite o Valor: " << endl;
+			cin >> vlr;
+		
+			*top = *top + 1;
+			pilha [*top] = vlr;
+		
+			cout << "Valor Empilhado!" << endl;
+		}
+			system("pause");
+	}
+
+void mostra_pilha (int * pilha, int top)
+{
+	if (top == -1)
+		cout << "Pilha Vazia" << endl;
+	else
+	{
+		cout << "Valores Da Pilha" << endl;
+		
+		for (int i = 0; i<=top; i++)
+			cout << pilha[i] << endl;
+	}
+	system("pause");
+}
+
+int pop(int *pilha, int *top)
+{
+	int vlr;
+	
+	if (*top == -1)
+		cout << "Pilha Vazia" << endl;
+	else
+	{
+		vlr = pilha[*top];
+		
+		*top = *top-1;
+		cout << "Valor Desempilhado: " << vlr << endl;
+	}
+	system("pause");
+	return vlr;
+}
