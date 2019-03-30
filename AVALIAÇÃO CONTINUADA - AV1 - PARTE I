@@ -1,0 +1,61 @@
+#include <stdio.h>
+//Estrutura declarada fora da função "main" para poder ser "visível" tanto
+// na função main quanto na função "pesquisar".
+struct reg {
+        int chave;
+        float valor;
+} typedef reg;
+//Protótipo da função pesquisar.
+int pesquisar(reg *, int);
+int main (void)
+{
+        //Declara o vetor de registro e insere os dados dos 3 elementos do vetor.
+        reg tabela[3] = {{10, 500.00}, {20, 750.00}, {30, 250.00}};
+
+        //Declara as variáveis auxiliares para ajudar na alteração de dados
+        // do vetor de registro.
+        int posic, chave_pesquisa;
+        printf("Alteração dos valores do vetor!\n");
+
+        //Lista o conteúdo do vetor de registro.
+        printf("Chave Valor\n");
+        for (int i=0; i<3; i++)
+                printf(" %2d %5.2f\n", tabela[i].chave, tabela[i].valor);
+        printf("Qual registro a ser alterado?");
+        scanf("%d", &chave_pesquisa);
+        //Chamada à função "pesquisar" para saber se a chave digitada existe
+        // no conjunto dos dados.
+        posic = pesquisar(tabela, chave_pesquisa);
+
+        //Após a execução da função "pesquisar", verifica se a chave foi
+        // encontrada ou não.
+        if (posic == -1)
+                printf("Chave não encontrada!\n\n");
+        else
+        {
+                printf("Digite o novo valor: ");
+                scanf("%f%", &tabela[posic].valor);
+                printf("Chave Valor\n");
+                for (int i=0; i<3; i++)
+                        printf(" %2d %7.2f\n", tabela[i].chave, tabela[i].valor);
+                return 0;
+        }
+}
+// Função "pesquisar". Parâmetro tab: recebe o ponteiro para o vetor tabela.
+// Parâmetro chave_digita: recebe o valor da chave a ser pesquisada no vetor.
+int pesquisar(reg * tab, int chave_digitada)
+{
+        //Variável auxiliar resultado para armazenar o resultado da pesquisa.
+        int resultado = -1;
+        int i;
+        for(i=0; i<3; i++)
+        {
+                if(chave_digitada == tab[i].chave)
+                {
+                        resultado = i;
+                }
+        }
+        //Retorna o conteúdo da Variável resultado: "-1" para não localizado ou
+        // a “posição do vetor” quando localizar a chave.
+        return resultado;
+}
