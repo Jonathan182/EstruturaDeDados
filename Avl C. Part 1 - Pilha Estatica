@@ -1,91 +1,87 @@
 #include <iostream>
 using namespace std;
+#define TAM 7
 
 void push(int*, int*);
-
 void mostra_pilha(int *, int);
-
 int pop(int*, int *);
 
-#define TAM 5
-
-int main(int argc, char** argv) {
+int main() {
 	setlocale(LC_ALL, "");
-	
 	int minha_pilha [TAM];
-	
 	int op;
-	
 	int valor;
-	
 	int topo = -1;
-	
+
 	do
 	{
-		cout << "Pilha" << endl;
-		cout << "1. Empilhar" << endl;
-		cout << "2. Desempilhar" << endl;
-		cout << "3. Mostrar Pilha" << endl;
-		cout << "0. Sair" << endl;
+    cout << "====== Pizzaria ======\n" << endl;
+		cout << " Selecione um valor:" << endl;
+		cout << "  (1) Adicionar Uma Unidade Para Entrega" << endl;
+		cout << "  (2) Remover a Ultima Unidade Adicionada" << endl;
+		cout << "  (3) Mostrar Unidades Adicionadas" << endl;
+		cout << "  (0) Sair" << endl;
 		cin >> op;
-		
+
 		switch (op)
 		{
 			case 1: push (minha_pilha, &topo); break;
 			case 2: valor = pop (minha_pilha, &topo); break;
 			case 3: mostra_pilha (minha_pilha, topo); break;
-		}	
+		}
 	} while (op != 0);
-	
+
 	return 0;
 }
 
 	void push (int *pilha, int *top)
  	{
 		int vlr;
-	
+
 		if (*top == TAM-1)
-			cout << "Pilha Cheia" << endl;
+			cout << "Máximo De Entregas Ja Foi Adicionado" << endl;
 		else
 		{
-			cout << "Digite o Valor: " << endl;
+			cout << "\nDigite o Codigo Do Produto a Ser Enviado: ";
 			cin >> vlr;
-		
+
 			*top = *top + 1;
 			pilha [*top] = vlr;
-		
-			cout << "Valor Empilhado!" << endl;
+
+			cout << "\nEntraga Programada!!!" << endl;
 		}
-			system("pause");
+		system("pause");
+    system("cls");
 	}
 
 void mostra_pilha (int * pilha, int top)
 {
 	if (top == -1)
-		cout << "Pilha Vazia" << endl;
+		cout << "Não Ha Nenhuma Entraga" << endl;
 	else
 	{
-		cout << "Valores Da Pilha" << endl;
-		
+		cout << "\n Entragas Adicionadas:" << endl;
+
 		for (int i = 0; i<=top; i++)
-			cout << pilha[i] << endl;
+			cout << "  Código:" << pilha[i] << endl;
 	}
 	system("pause");
+  system("cls");
 }
 
 int pop(int *pilha, int *top)
 {
 	int vlr;
-	
+
 	if (*top == -1)
-		cout << "Pilha Vazia" << endl;
+		cout << "Não Ha Nenhuma Entraga" << endl;
 	else
 	{
 		vlr = pilha[*top];
-		
 		*top = *top-1;
-		cout << "Valor Desempilhado: " << vlr << endl;
+	  cout << "\n Entrega Removida, Código: " << vlr << endl;
 	}
 	system("pause");
+  system("cls");
 	return vlr;
 }
