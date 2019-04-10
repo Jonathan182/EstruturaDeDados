@@ -1,0 +1,79 @@
+#include <iostream>
+#include <cstring>
+#define MAX_FILA 5  // Tamanho Máximo da Fila
+using namespace std;
+
+void mostrar_fila();
+void enfileirar();
+void desenfileirar();
+
+int fila[MAX_FILA];
+
+int inicio = 0;
+int fim = 0;
+
+int main(){
+
+  int op;
+
+  do
+	{
+    system("cls");
+    mostrar_fila();
+    cout << "\n========================\n";
+    cout << "INICIO DA FILA: " << inicio <<endl;
+    cout << "========================\n";
+    cout << "FIM DA FILA: " << fim <<endl;
+    cout << "========================\n";
+		cout << " \nEscolha Uma Opcao: \n\n";
+		cout << "  (1) Enfileirar " << endl;
+		cout << "  (2) Desenfileirar " << endl;
+		cout << "  (0) Sair " << endl;
+
+		cin >> op;
+
+		switch (op)
+		{
+			case 1: enfileirar(); break;
+			case 2: desenfileirar(); break;
+		}
+
+	} while (op != 0);
+
+	return 0;
+}
+
+void enfileirar(){
+  if (fim == MAX_FILA){
+    cout << " \nERRO: Fila Cheia\n";
+    system("pause");
+  }
+  else{
+    cout << "\nDigite Um Valor: ";
+    cin >> fila[fim];
+
+    fim++;
+  }
+}
+
+void desenfileirar(){
+  if( inicio == fim){
+    cout << " \nERRO: Lista Vazia\n";
+    system("pause");
+  }
+  else{
+    int i;
+    for(i=0; i<MAX_FILA; i++)
+    fila[i] = fila[i + 1];
+    fim--;
+  }
+}
+
+void mostrar_fila(){
+  int i;
+   cout << "[ ";
+  for(i=0; i < MAX_FILA; i++){
+    cout << fila[i]<< ";";
+  }
+  cout << " ] \n";
+}
