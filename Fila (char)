@@ -1,0 +1,79 @@
+// Bibliotecas
+#include <iostream>
+#include <cstring>
+#define MAX_FILA 10  // Tamanho Máximo da Fila
+using namespace std;
+
+// Prótotipo Das Funções
+void mostrar_fila(); 
+void enfileirar();
+void desenfileirar();
+
+// Vetor Que Armazena Os Nomes Dos Pacientes
+char fila[MAX_FILA][20];
+
+// Declaração de Inicio e Fim da Fila Para Álgebra Nas Funções
+int inicio = 0;
+int fim = 0;
+
+// Função Principal
+int main(){
+  int op;
+  do
+	{
+    system("cls");
+    mostrar_fila();
+    cout << "\n========================\n";
+    cout << "INICIO DA FILA: " << inicio + 1 <<endl;
+    cout << "========================\n";
+    cout << "FIM DA FILA: " << fim <<endl;
+    cout << "========================\n";
+		cout << " \nEscolha Uma Opcao: \n\n";
+		cout << "  (1) Enfileir Paciente " << endl;
+		cout << "  (2) Desenfileirar Paciente " << endl;
+		cout << "  (0) Sair " << endl;
+		cin >> op;
+		switch (op)
+		{
+			case 1: enfileirar(); break;
+			case 2: desenfileirar(); break;
+		}
+	} while (op != 0);
+	return 0;
+}
+
+// Função Enfileirar Dados na Fila
+void enfileirar(){
+  if (fim == MAX_FILA){
+    cout << " \nERRO: Fila Cheia\n";
+    system("pause");
+  }
+  else{
+    cout << "\nDigite o Nome do Paciente: ";
+    cin >> fila[fim];
+    fim++;
+  }
+}
+
+// Função Desenfileirar os Dados da Fila
+void desenfileirar(){
+  if( inicio == fim){
+    cout << " \nERRO: Fila Vazia\n";
+    system("pause");
+  }
+  else{
+    int i;
+    for(i=0; i<MAX_FILA; i++)
+    strcpy(fila[i], fila[i + 1]);
+    fim--;
+  }
+}
+
+// Função Para Mostrar os Dados Armazenados na Fila
+void mostrar_fila(){
+  int i;
+  cout << " QUADRO DE PACIENTES:\n\n";
+  for(i=0; i < MAX_FILA; i++){
+    cout << "(" << i+1 << ") - "<< fila[i]<< endl;
+  }
+}
