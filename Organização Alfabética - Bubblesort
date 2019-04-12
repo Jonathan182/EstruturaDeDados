@@ -1,0 +1,70 @@
+#include <string.h>
+#include <iostream>
+#define TAM_MAX 50  // Pode Ser Diminiudo o Valor Para Uso Mais Rapido.
+using namespace std;
+
+void cads();
+void bubblesort();
+void exibir();
+
+char str[TAM_MAX][20], t[20];
+int inicio = 0, fim = 0;
+
+int main()
+{
+	int op;
+	do{
+		system("cls");
+		cout << " \nEscolha Uma Opcao: \n\n";
+		cout << "  (1) Cadrastar Pacientes\n";
+		cout << "  (2) Mostrar Pacientes Cadastrados\n";
+		cout << "  (0) Sair \n\n";
+		cin >> op;
+		switch (op)
+		{
+			case 1: cads(); bubblesort(); break;
+			case 2: exibir(); break;
+		}
+	}while (op != 0);
+	return 0;
+}
+
+void cads(){
+	if(fim == TAM_MAX){
+		cout << "Cadastro Cheio\n";
+		system("pause");
+	}
+	else{
+		cout << "\nDigite o Nome do Paciente: ";
+		cin >> str[fim];
+		cout << "\nPaciente Cadastrado!!!\n";
+		system("pause");
+		fim ++;
+	}
+}
+
+void bubblesort(){
+	int i, j;
+	for(i=1; i<fim; i++)
+	{
+		for(j=1; j<fim; j++)
+		{
+			if(strcmp(str[j-1], str[j])>0)
+			{
+				strcpy(t, str[j-1]);
+				strcpy(str[j-1], str[j]);
+				strcpy(str[j], t);
+			}
+		}
+	}
+}
+
+void exibir(){
+	cout<<"\nNomes Organizados : \n";
+	int i;
+	for(i=0; i<TAM_MAX; i++)
+	{
+		cout<< "(" << i+1 << ") - " << str[i]<<endl;
+	}
+	system("pause");
+}
