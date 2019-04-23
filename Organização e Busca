@@ -1,0 +1,105 @@
+#include <iostream>
+#include <stdlib.h>
+#include <String.h>
+#define TAM 5
+using namespace std;
+int ini=0, fim=0;
+
+struct paciente{
+  char nome[50];
+}typedef paciente;
+paciente dado[TAM];
+
+void ordenar();
+int busca();
+void cads();
+void mostrar();
+
+int main(){
+  setlocale(LC_ALL, "");
+  int op;
+  do{
+    system("cls");
+    // Mostragem para ver comportamento da fila
+    //cout << "\n========================\n";
+    //cout << "INICIO DA FILA: " << ini <<endl;
+    //cout << "========================\n";
+    //cout << "FIM DA FILA: " << fim <<endl;
+    //cout << "========================\n";
+    cout<<"====Cadastro De Pacientes====\n\n";
+    cout<<" (1) - Cadastrar Paciente \n";
+    cout<<" (2) - Buscar um Paciente \n";
+    cout<<" (3) - Mostrar Pacientes \n";
+    cout<<" (0) - Sair\n\n";
+    cin>>op;
+    switch(op){
+      case 1: cads(); break;
+      case 2: ordenar(); busca(); break;
+      case 3: mostrar(); break;
+    }
+  }
+  while (op!=0);
+  system("PAUSE");
+  return 0;
+}
+
+void ordenar(){
+  int i,j;
+  char t[50];
+  for(i=1; i<TAM; i++){
+		for(j=1; j<TAM; j++){
+			if(strcmp(dado[j-1].nome, dado[j].nome)>0){
+				strcpy(t, dado[j-1].nome);
+				strcpy(dado[j-1].nome, dado[j].nome);
+				strcpy(dado[j].nome, t);
+			}
+		}
+	}
+}
+
+int busca (){
+  int inicio = 0;
+  int final = TAM-1;
+  char chave[50];
+  cout << "\nDigite o Nome do Paciente: ";
+  cin >> chave;
+
+  while (inicio <= final){
+    int meio = (inicio + final) / 2;
+    if(strcmp(chave, dado[meio].nome) ==0){
+      cout <<"\nNome Encontrado.\n";
+      system("pause");
+      return 0;
+      }else if(strcmp(chave, dado[meio].nome)<0){
+        final = meio - 1;
+      }else if(strcmp(chave, dado[meio].nome)>0){
+        inicio = meio +1;
+      }
+  }
+  cout <<"\nERROR! Nome Não Encontrado.\n";
+  system("pause");
+  return 1;
+}
+
+void cads(){
+  if(fim == TAM){
+    cout <<"\nERROR! Cadastro Cheio.\n";
+  }
+  else{
+    cout <<"\nDigite o Nome do Paciente: ";
+    cin >> dado[fim].nome;
+    cout <<"\nCadastro Efetuado.\n";
+    fim ++;
+  }
+  system("PAUSE");
+}
+
+void mostrar(){
+  int i;
+  cout << "\nLista de Pacientes Cadastrados: \n";
+
+  for(i=0;i<TAM;i++){
+    cout << dado[i].nome<<endl;
+  }
+  system("pause");
+}
