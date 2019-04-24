@@ -2,14 +2,13 @@
 #include <cstring>
 
 using namespace std;
-
-#define TAM 3
+#define TAM 500
 
 int inicio=0, fim=0;
 
-void ordenar();
 void mostrar();
 void cads();
+void senha();
 
 struct dados{
 	char nome[30];
@@ -18,93 +17,73 @@ struct dados{
 
 dados cliente[TAM];
 
-
-
 int main(int argc, char** argv) {
 	setlocale(LC_ALL, "");
-	
+
 	int op;
-	
   do{
-  	
+
     system("cls");
     // Mostragem para ver comportamento da fila
-    cout << "\n========================\n";
-    cout << "INICIO DA FILA: " << inicio <<endl;
-    cout << "========================\n";
-    cout << "FIM DA FILA: " << fim <<endl;
-    cout << "========================\n";
-    
-    cout<<"====Cadastro De Pacientes====\n\n";
+    //cout << "\n========================\n";
+    //cout << "INICIO DA FILA: " << inicio <<endl;
+    //cout << "========================\n";
+    //cout << "FIM DA FILA: " << fim <<endl;
+    //cout << "========================\n";
+
+    cout<<"\n====Clientes Agência====\n\n";
     cout<<" (1) - Cadastrar cliente \n";
-    cout<<" (2) - Buscar um Paciente \n";
-    cout<<" (3) - Mostrar Pacientes \n";
+    cout<<" (2) - Mostrar Clientes \n";
     cout<<" (0) - Sair\n\n";
     cin>>op;
+
     switch(op){
-    	
+
       case 1: cads(); break;
-      
-      case 2: cout <<"fahfuhaf";
-      
-      case 3: ordenar(); mostrar(); break;
-      
+      case 2: mostrar(); break;
+
     }
   }
-  
+
   while (op!=0);
-  
-  system("PAUSE");	
-	
+
+  system("PAUSE");
 	return 0;
 }
 
 void mostrar(){
 	int i;
+  cout <<"\nLista de Clientes: \n";
+  cout <<"(Senha : Nome) \n\n";
+
 	for (i=0; i<TAM; i++){
-		cout << cliente[i].cod << ":";
-		cout << cliente[i].nome << endl;
+    if(i < fim){
+	    cout << cliente[i].cod << " : ";
+	    cout << cliente[i].nome << endl << endl;
+   }
 	}
 	system("pause");
 }
 
-void ordenar(){
-	dados aux;
-	int i, j;
-	
-	for(i=TAM - 1; i>0; i--){
-		for(j=0; j<i; j++){
-			if(cliente[j].cod > cliente[j+1].cod){
-				aux = cliente[j];
-				cliente[j] = cliente[j+1];
-				cliente[j+1] = aux;
-			}
-				
-		}
-	}
-}
-
 void cads(){
-	
+
 	if(fim == TAM){
     cout <<"\nERROR! Cadastro Cheio.\n";
   }
-  
+
   else{
     cout <<"\nDigite o Nome do Paciente: ";
     cin >> cliente[fim].nome;
-    cout <<"\nDigite o cod do Paciente: ";
-    cin >> cliente[fim].cod;
-    
     cout <<"\nCadastro Efetuado.\n";
     fim ++;
+    senha();
   }
-  
   system("PAUSE");
-  
 }
 
 void senha(){
-	
-	
+
+	if(fim > 0){
+    cliente[fim-1].cod = fim;
+  }
 }
