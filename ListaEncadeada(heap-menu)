@@ -1,0 +1,106 @@
+/* PROGRAMA MENU INICIAR
+ * PROGRAMA EXEMPLO PARA ESTUDO DE ALOCAÇÃO DE MEMÓRIA
+ * RICARDO FERREIRA
+ * CRIAÇÃO 25/05/2019 */
+#include <iostream>
+#include <cstdlib>
+#include <cstring>
+using namespace std;
+
+// Estrutura Aplicativo
+struct Aplicativo {
+    char descricao[30];
+    Aplicativo *proximo;
+};
+
+struct Cabeca {
+    Aplicativo *inicio;
+};
+
+void inserirNoMenu(Cabeca *Menu, char progr[])
+{
+    Aplicativo *Programa = (struct Aplicativo*) new Aplicativo;
+    strcpy(Programa->descricao, progr);
+    Programa->proximo = Menu->inicio;
+    Menu->inicio = Programa;
+}
+void inserirNaPosicao(Cabeca *Menu, char progr[], int posicao)
+{
+    int i = 1;
+    struct Aplicativo *programa;
+    Aplicativo *Novo = (struct Aplicativo*) new Aplicativo;
+    programa = Menu->inicio;
+    while (i < posicao)
+    {
+        programa = programa->proximo;
+        i++;
+    }
+    strcpy(Novo->descricao, progr);
+    Novo->proximo = programa->proximo;
+    programa->proximo = Novo;
+
+}
+
+void mostrarMenu(Cabeca *Menu){
+    struct Aplicativo *programa;
+    for (programa = Menu->inicio; programa!=NULL; programa = programa->proximo) {
+        cout << programa->descricao << endl;
+    }
+}
+
+void excluirDaLista(Cabeca *Menu)
+{
+  struct Aplicativo *aux = Menu->inicio;
+  Menu->inicio = Menu->inicio->proximo;
+  delete(aux);
+
+}
+
+int main (void)
+{
+    int op = 1;
+    int posicao;
+    char programa[30];
+
+    //Cabeça da lista.
+    Cabeca *menuDeProgramas = (struct Cabeca*) new Cabeca;
+    menuDeProgramas->inicio = NULL;
+
+    while(op!=6) {
+        printf( "\n\n" );
+        printf( "1 - Inserir na Lista\n" );
+        printf( "2 - Inserir na Posição N\n" );
+        printf( "3 - Remover da Lista\n" );
+        printf( "4 - Tamanho da Lista\n" );
+        printf( "5 - Mostrar Lista\n" );
+        printf( "6 - Sair\n");
+        printf( "Opcao? " );
+
+        cin >> op ;
+        switch(op) {
+            case 1: // inserir elemento no inicio
+                cout << "Informe o programa: ";
+                cin >> programa;
+                inserirNoMenu(menuDeProgramas, programa);
+                break;
+            case 2: // inserir elemento na posição específica
+                cout << "Informe o programa: ";
+                cin >> programa;
+                cout << "Informe a posição: ";
+                cin >> posicao;
+                inserirNaPosicao(menuDeProgramas, programa, posicao);
+                break;
+            case 3: // remover um elemento
+                excluirDaLista(menuDeProgramas);
+                break;
+            case 4: // mostar o tamanho da lista
+                break;
+            case 5: // mostrar lista
+                cout << endl << endl << "Você abriu os programas: " << endl;
+                mostrarMenu(menuDeProgramas);
+                break;
+            case 6: // abandonar o programa
+                exit(0);
+        }
+    }
+}
