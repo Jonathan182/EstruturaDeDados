@@ -9,98 +9,118 @@ using namespace std;
 
 // Estrutura Aplicativo
 struct Aplicativo {
-    char descricao[30];
-    Aplicativo *proximo;
+        char descricao[30];
+        Aplicativo *proximo;
 };
 
 struct Cabeca {
-    Aplicativo *inicio;
+        Aplicativo *inicio;
 };
 
 void inserirNoMenu(Cabeca *Menu, char progr[])
 {
-    Aplicativo *Programa = (struct Aplicativo*) new Aplicativo;
-    strcpy(Programa->descricao, progr);
-    Programa->proximo = Menu->inicio;
-    Menu->inicio = Programa;
+        Aplicativo *Programa = (struct Aplicativo*) new Aplicativo;
+        strcpy(Programa->descricao, progr);
+        Programa->proximo = Menu->inicio;
+        Menu->inicio = Programa;
+        cout << " Programa Inserido\n\n";
+        system("pause");
 }
 void inserirNaPosicao(Cabeca *Menu, char progr[], int posicao)
 {
-    int i = 1;
-    struct Aplicativo *programa;
-    Aplicativo *Novo = (struct Aplicativo*) new Aplicativo;
-    programa = Menu->inicio;
-    while (i < posicao)
-    {
-        programa = programa->proximo;
-        i++;
-    }
-    strcpy(Novo->descricao, progr);
-    Novo->proximo = programa->proximo;
-    programa->proximo = Novo;
-
+        int i = 1;
+        struct Aplicativo *programa;
+        Aplicativo *Novo = (struct Aplicativo*) new Aplicativo;
+        programa = Menu->inicio;
+        while (i < posicao)
+        {
+                programa = programa->proximo;
+                i++;
+        }
+        strcpy(Novo->descricao, progr);
+        Novo->proximo = programa->proximo;
+        programa->proximo = Novo;
+        cout << " Programa Inserido\n\n";
+        system("pause");
 }
 
 void mostrarMenu(Cabeca *Menu){
-    struct Aplicativo *programa;
-    for (programa = Menu->inicio; programa!=NULL; programa = programa->proximo) {
-        cout << programa->descricao << endl;
-    }
-}
-
-void excluirDaLista(Cabeca *Menu)
-{
-  struct Aplicativo *aux = Menu->inicio;
-  Menu->inicio = Menu->inicio->proximo;
-  delete(aux);
-
-}
-
-int main (void)
-{
-    int op = 1;
-    int posicao;
-    char programa[30];
-
-    //Cabeça da lista.
-    Cabeca *menuDeProgramas = (struct Cabeca*) new Cabeca;
-    menuDeProgramas->inicio = NULL;
-
-    while(op!=6) {
-        printf( "\n\n" );
-        printf( "1 - Inserir na Lista\n" );
-        printf( "2 - Inserir na Posição N\n" );
-        printf( "3 - Remover da Lista\n" );
-        printf( "4 - Tamanho da Lista\n" );
-        printf( "5 - Mostrar Lista\n" );
-        printf( "6 - Sair\n");
-        printf( "Opcao? " );
-
-        cin >> op ;
-        switch(op) {
-            case 1: // inserir elemento no inicio
-                cout << "Informe o programa: ";
-                cin >> programa;
-                inserirNoMenu(menuDeProgramas, programa);
-                break;
-            case 2: // inserir elemento na posição específica
-                cout << "Informe o programa: ";
-                cin >> programa;
-                cout << "Informe a posição: ";
-                cin >> posicao;
-                inserirNaPosicao(menuDeProgramas, programa, posicao);
-                break;
-            case 3: // remover um elemento
-                excluirDaLista(menuDeProgramas);
-                break;
-            case 4: // mostar o tamanho da lista
-                break;
-            case 5: // mostrar lista
-                cout << endl << endl << "Você abriu os programas: " << endl;
-                mostrarMenu(menuDeProgramas);
-                break;
-            case 6: // abandonar o programa
-                exit(0);
+        struct Aplicativo *programa;
+        for (programa = Menu->inicio; programa!=NULL; programa = programa->proximo) {
+                cout <<"  "<<programa->descricao << endl;
         }
-    }
+        system("pause");
+}
+
+void excluirDaLista(Cabeca *Menu){
+        if(Menu->inicio == NULL) {
+                cout << "\n A Lista Esta Vazia\n\n";
+        }
+        else{
+                struct Aplicativo *aux = Menu->inicio;
+                Menu->inicio = Menu->inicio->proximo;
+                delete(aux);
+                cout << "\n Programa Removido\n\n";
+        }
+        system("pause");
+}
+
+void MostrarTamanhoLista(Cabeca *Menu){
+        struct Aplicativo *programa;
+        int i = 0;
+        programa->proximo = Menu->inicio;
+        while (programa->proximo != NULL) {
+                programa = programa->proximo;
+                i++;
+        }
+        cout << "\n O Tamanho Da Lista e: " << i <<endl<<endl;
+        system("pause");
+}
+
+int main (void){
+        int op = 1;
+        int posicao;
+        char programa[30];
+
+        //Cabeça da lista.
+        Cabeca *menuDeProgramas = (struct Cabeca*) new Cabeca;
+        menuDeProgramas->inicio = NULL;
+
+        while(op!=6) {
+                printf( "\n" );
+                printf( " 1 - Inserir na Lista\n" );
+                printf( " 2 - Inserir na Posiacao N\n" );
+                printf( " 3 - Remover da Lista\n" );
+                printf( " 4 - Tamanho da Lista\n" );
+                printf( " 5 - Mostrar Lista\n" );
+                printf( " 6 - Sair\n");
+                printf( "\n Opcao? " );
+                cin >> op;
+                switch(op) {
+                case 1: // inserir elemento no inicio
+                        cout << "\n Informe o programa: ";
+                        cin >> programa;
+                        inserirNoMenu(menuDeProgramas, programa);
+                        break;
+                case 2: // inserir elemento na posição específica
+                        cout << "\n Informe o programa: ";
+                        cin >> programa;
+                        cout << " Informe a posicao: ";
+                        cin >> posicao;
+                        inserirNaPosicao(menuDeProgramas, programa, posicao);
+                        break;
+                case 3: // remover um elemento
+                        excluirDaLista(menuDeProgramas);
+                        break;
+                case 4: // mostar o tamanho da lista
+                        MostrarTamanhoLista(menuDeProgramas);
+                        break;
+                case 5: // mostrar lista
+                        cout << "\n Voce Abriu Os Programas: \n";
+                        mostrarMenu(menuDeProgramas);
+                        break;
+                case 6: // abandonar o programa
+                        exit(0);
+                } system("cls");
+        }
 }
