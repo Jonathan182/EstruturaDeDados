@@ -1,0 +1,168 @@
+#include <iostream>
+#include <cstring>
+
+using namespace std;
+
+struct ARVORE {
+        char info[30];
+        ARVORE *esq, *dir;
+};
+
+
+ARVORE* inserir(ARVORE *aux, char valor[30]){
+        if (aux == NULL) {
+                aux = new ARVORE();
+                strcpy(aux->info, valor);
+                //aux->num = num;
+                aux->esq = NULL;
+                aux->dir = NULL;
+        }
+        else if (strcmp(aux->info, valor) < 0) {
+                //else if (num < aux->num){
+                aux->esq = inserir(aux->esq, valor);
+        }
+        else{
+                aux->dir = inserir(aux->dir, valor);
+        }
+
+        return aux;
+}
+
+
+int consultar(ARVORE *aux, char valor[30], int achou){
+        if (aux != NULL && achou == 0) {
+                if(strcmp(aux->info, valor) == 0) {
+                        //if (aux->num == num){
+                        achou = 1;
+                }
+                else if (strcmp(aux->info, valor) < 0) {
+                        //else if (num < aux->num){
+                        achou = consultar(aux->esq, valor, achou);
+                }
+                else{
+                        achou = consultar(aux->dir, valor, achou);
+                }
+        }
+
+        return achou;
+}
+
+
+void mostraremordem(ARVORE *aux){
+        if (aux != NULL) {
+                //mostraremordem(aux->esq);
+                mostraremordem(aux->dir);
+                cout <<" "<< aux->info << " \n";
+                //mostraremordem(aux->dir);
+                mostraremordem(aux->esq);
+        }
+}
+
+
+ARVORE* remover(ARVORE *aux, char valor[30]){
+        ARVORE *p, *p2;
+        if(strcmp(aux->info, valor) == 0) {
+                //if (aux->num == num){
+                if (aux->esq == aux->dir) {
+                        delete aux;
+                        return NULL;
+                }
+                else if(aux->esq == NULL) {
+                        p = aux->dir;
+                        delete aux;
+                        return p;
+                }
+                else if (aux->dir == NULL) {
+                        p = aux->esq;
+                        delete aux;
+                        return p;
+                }
+                else{
+                        p2 = aux->dir;
+                        p = aux->esq;
+                        while (p->esq != NULL) {
+                                p = p->esq;
+                        }
+                        p->esq = aux->esq;
+                        delete aux;
+                        return p2;
+                }
+        }
+        else if (strcmp(aux->info, valor) > 0) {
+                //else if (aux->num < num){
+                aux->dir = remover(aux->dir, valor);
+        }
+        else{
+                aux->esq = remover(aux->esq, valor);
+        }
+
+        return aux;
+}
+
+
+int main() {
+        ARVORE *raiz = NULL;
+        ARVORE *aux;
+        int op, achou;
+        char valor[30];
+
+
+        do {
+
+                system("cls");
+                cout << "\nTURMA DE ESTRUTURA DE DADOS!" << endl;
+                printf ("\n\n 1. Inserir Aluno:");
+                printf ("\n 2. Exibe Alunos Em Ordem:");
+                printf ("\n 3. Remover Determinado Aluno:");
+                printf ("\n 4. Sair:");
+                printf ("\n\n Escolha a opcao desejada: ");
+                cin >> op;
+
+                switch(op) {
+
+                case 1: cout << "\n Digite Um Aluno para inserir: ";
+                        cin >> valor;
+                        raiz = inserir(raiz, valor);
+                        cout << "\n Aluno: " << valor << ", inserido na arvore.\n ";
+                        system("pause");
+                        break;
+                case 2: if (raiz == NULL) {
+                                cout <<"\n ERROR!, ARVORE VAZIA!\n ";
+                                system("pause");
+                }
+                        else{
+                                cout << "\n Listando os Alunos em ordem: \n";
+                                mostraremordem(raiz);
+                                system("pause");
+                        }
+                        break;
+                case 3: if (raiz == NULL) {
+                                cout <<"\n ERROR!, ARVORE VAZIA!\n ";
+                                system("pause");
+                }
+                        else{
+                                cout << "\n Digite o nome do Aluno para excluir: ";
+                                cin >> valor;
+                                achou = 0;
+                                achou = consultar(raiz, valor, achou);
+
+                                if (achou == 0) {
+                                        cout << "\n ERROR!, Aluno nao encontrado!.\n ";
+                                        cout << achou<<endl;
+                                        system("pause");
+                                }
+                                else{
+                                        raiz = remover(raiz, valor);
+                                        cout << "\n Aluno: " << valor << ", excluido da arvore.\n ";
+                                        system("pause");
+                                }
+                        }
+                        break;
+                }
+        }
+
+        while (op!=0);
+
+        system("PAUSE");
+        return 0;
+}
